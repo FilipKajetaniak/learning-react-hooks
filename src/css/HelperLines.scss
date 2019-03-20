@@ -4,6 +4,7 @@
   width: 100%;
   border-bottom: 1px solid $lgray;
   position: absolute;
+  z-index: -1;
   &:last-of-type {
     border-bottom: none;
   }
@@ -12,6 +13,7 @@
   border-right: 1px solid $lgray;
   height: 100%;
   position: absolute;
+  z-index: -1;
   &:last-of-type {
     border-right: none;
   }

@@ -29,34 +29,34 @@ export default function calculateStyles(start, end) {
   // bottom-right direction
   if (differenceX > 0 && differenceY > 0) {
     return {
-      left: `${toPercent(start.x - margin)}%`,
-      top: `${start.y}px`,
-      width: `${toPercent(differenceX)}%`,
-      height: `${differenceY}px`
+      left: toPercent(start.x - margin),
+      top: start.y,
+      width: toPercent(differenceX),
+      height: differenceY
     };
   } // top-right direction
   else if (differenceX > 0 && differenceY < 0) {
     return {
-      left: `${toPercent(start.x - margin)}%`,
-      top: `${end.y}px`,
-      width: `${toPercent(differenceX)}%`,
-      height: `${start.y - end.y}px`
+      left: toPercent(start.x - margin),
+      top: end.y,
+      width: toPercent(differenceX),
+      height: start.y - end.y
     };
   } // top-left direction
   else if (differenceX < 0 && differenceY < 0) {
     return {
-      left: `${toPercent(end.x - margin)}%`,
-      top: `${end.y}px`,
-      width: `${toPercent(start.x - end.x)}%`,
-      height: `${start.y - end.y}px`
+      left: toPercent(end.x - margin),
+      top: end.y,
+      width: toPercent(start.x - end.x),
+      height: start.y - end.y
     };
   } // bottom-left direction
   else {
     return {
-      left: `${toPercent(end.x - margin)}%`,
-      top: `${start.y}px`,
-      width: `${toPercent(start.x - end.x)}%`,
-      height: `${differenceY}px`
+      left: toPercent(end.x - margin),
+      top: start.y,
+      width: toPercent(start.x - end.x),
+      height: differenceY
     };
   }
 }
