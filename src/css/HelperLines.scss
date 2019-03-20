@@ -1,0 +1,22 @@
+@import "./var";
+
+.horizontal {
+  width: 100%;
+  border-bottom: 1px solid $lgray;
+  position: absolute;
+  &:last-of-type {
+    border-bottom: none;
+  }
+}
+.vertical {
+  border-right: 1px solid $lgray;
+  height: 100%;
+  position: absolute;
+  &:last-of-type {
+    border-right: none;
+  }
+}
+
+.center {
+  border-right: 1px solid #ffdeee;
+}

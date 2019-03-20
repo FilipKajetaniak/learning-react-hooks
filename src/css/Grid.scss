@@ -1,0 +1,10 @@
+@import "./var";
+
+.wrapper {
+  width: 100%;
+  max-width: 810px;
+  margin: 0 auto;
+  border: 1px solid $lgray;
+  height: 1000px;
+  position: relative;
+}
