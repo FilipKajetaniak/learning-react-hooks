@@ -17,42 +17,45 @@ export default function calculateStyles(start, end) {
   }
   // if window is wider than the grid we need to calculate margins
   let margin = 0;
+  let gridWidth = document.documentElement.clientWidth;
   if (document.documentElement.clientWidth > 810) {
     margin = (document.documentElement.clientWidth - 810) / 2;
+    gridWidth = 810;
   }
   const differenceX = end.x - start.x;
   const differenceY = end.y - start.y;
 
+  const toPercent = width => Math.round((width / gridWidth) * 100 * 10) / 10;
   // bottom-right direction
   if (differenceX > 0 && differenceY > 0) {
     return {
-      left: start.x - margin,
-      top: start.y,
-      width: `${differenceX}px`,
+      left: `${toPercent(start.x - margin)}%`,
+      top: `${start.y}px`,
+      width: `${toPercent(differenceX)}%`,
       height: `${differenceY}px`
     };
   } // top-right direction
   else if (differenceX > 0 && differenceY < 0) {
     return {
-      left: start.x - margin,
-      top: end.y,
-      width: `${differenceX}px`,
+      left: `${toPercent(start.x - margin)}%`,
+      top: `${end.y}px`,
+      width: `${toPercent(differenceX)}%`,
       height: `${start.y - end.y}px`
     };
   } // top-left direction
   else if (differenceX < 0 && differenceY < 0) {
     return {
-      left: end.x - margin,
-      top: end.y,
-      width: `${start.x - end.x}px`,
+      left: `${toPercent(end.x - margin)}%`,
+      top: `${end.y}px`,
+      width: `${toPercent(start.x - end.x)}%`,
       height: `${start.y - end.y}px`
     };
   } // bottom-left direction
   else {
     return {
-      left: Math.abs(end.x - margin),
-      top: start.y,
-      width: `${start.x - end.x}px`,
+      left: `${toPercent(end.x - margin)}%`,
+      top: `${start.y}px`,
+      width: `${toPercent(start.x - end.x)}%`,
       height: `${differenceY}px`
     };
   }
