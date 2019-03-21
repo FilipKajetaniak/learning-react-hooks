@@ -1,36 +1,43 @@
-import React, { useState, useContext } from 'react';
+import React, { useRef, useContext } from 'react';
 import '../../css/GridControl.scss';
 import { gridContext } from '../../context/gridContext';
 
 export default function GridControl() {
     const {gridParameters, setGridParameters} = useContext(gridContext);
-    const [newParameters, setNewParameters] = useState(gridParameters);
-
-    const handleChange = e => {
-        setNewParameters({
-            ...newParameters,
-            [e.target.name]: e.value
+    const horizontalLines = useRef();
+    const verticalLines = useRef();
+    const submit = () => {
+        setGridParameters({
+            ...gridParameters,
+            horizontalLines: horizontalLines.current.value,
+            varticalLines: verticalLines.current.value
         })
     }
-
-    const {horizontalLines, verticalLines} = newParameters;
+    const toggleGrid = () => {
+        setGridParameters({
+            ...gridParameters,
+            visible: !gridParameters.visible
+        })
+    }
     return (
         <div className="grid-control">
             horizontal lines: <br/>
             <input 
                 type="number" 
-                value={horizontalLines}
+                ref={horizontalLines}
+                defaultValue={gridParameters.horizontalLines}
                 name="horizontalLines"
-                onChange={handleChange}
             /> <br/>
             vertical lines: <br/>
             <input 
                 type="number"
-                value={verticalLines}
+                ref={verticalLines}
+                defaultValue={gridParameters.verticalLines}
                 name="verticalLines"
-                onChange={handleChange}
             /> <br/>
-            <button onClick={() => setGridParameters(newParameters)}></button>
+            <button onClick={submit}>Save</button>
+            <br/>
+            <button onClick={toggleGrid}>Toggle grid</button>
         </div>
     )
 }

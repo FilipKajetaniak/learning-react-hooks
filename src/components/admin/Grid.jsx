@@ -9,7 +9,8 @@ const initialState = {
   left: null,
   top: null,
   width: null,
-  height: null
+  height: null,
+  visible: true
 };
 
 export default function Grid() {

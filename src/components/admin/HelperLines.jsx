@@ -38,8 +38,8 @@ export default function HelperLines() {
 
   return (
     <>
-      {horizontalLines}
-      {verticalLines}
+        {gridParameters.visible && horizontalLines}
+        {gridParameters.visible && verticalLines}
     </>
   );
 }
