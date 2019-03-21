@@ -14,24 +14,19 @@ export default function stickToGrid(data) {
     left = verticalStep * Math.floor(left / verticalStep)  
   }
 
-  // calculating nearest breakpoint for right side
-  // if (width % verticalStep >= verticalStep / 2 ) {
-  //   width = verticalStep * Math.ceil(width / verticalStep)
-  // } else {
-  //   width = verticalStep * Math.floor(width / verticalStep)  
-  // }
-
   // calculating nearest breakpoint for top side
   if (top % horizontalStep >= horizontalStep / 2 ) {
     top = horizontalStep * Math.ceil(top / horizontalStep)
+    console.log(top);
   } else {
-    top = horizontalStep * Math.floor(top / horizontalStep)  
+    top = horizontalStep * Math.floor(top / horizontalStep)
+    console.log(top);
   }
 
   return {
-    ...data,
     left,
-    width,
-    top
+    top:  Math.floor(top),
+    height,
+    width
   }
 }

@@ -3,6 +3,7 @@
 .horizontal {
   width: 100%;
   border-bottom: 1px solid $lgray;
+  box-sizing: border-box;
   position: absolute;
   z-index: -1;
   &:last-of-type {
