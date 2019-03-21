@@ -7,7 +7,7 @@ export default function NewElement({ data }) {
       <div
         className="new-element"
         style={
-          data.top
+          data.top || data.left || data.width || data.height
             ? {
                 left: `${data.left}%`,
                 top: `${data.top}px`,

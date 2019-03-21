@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../../css/HelperLines.scss";
+import { gridContext } from "../../context/gridContext";
 
 export default function HelperLines() {
+  const { gridParameters } = useContext(gridContext);
   const verticalLines = [];
-  const numberOfVerticalLines = 26;
+  const numberOfVerticalLines = gridParameters.verticalLines;
   for (let i = 0; i < numberOfVerticalLines; i++) {
     verticalLines.push(
       <div
@@ -20,7 +22,7 @@ export default function HelperLines() {
   }
 
   const horizontalLines = [];
-  const numberOfHorizontalLines = 35;
+  const numberOfHorizontalLines = gridParameters.horizontalLines;
   for (let i = 0; i < numberOfHorizontalLines; i++) {
     horizontalLines.push(
       <div

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import Selection from "./Selection";
+import { newElementContext } from "../../context/newElementContext";
 import { gridContext } from "../../context/gridContext";
 import stickToGrid from "../../utils/stickToGrid";
 import calculateMouseSelection from "../../utils/calculateMouseSelection";
@@ -14,7 +15,8 @@ export default function MouseSelection() {
     x: null,
     y: null
   });
-  const { setNewElementData } = useContext(gridContext);
+  const { setNewElementData } = useContext(newElementContext);
+  const { gridParameters } = useContext(gridContext);
   const resizing = e => {
     if (!isResizing) {
       return;
@@ -35,7 +37,8 @@ export default function MouseSelection() {
   const stopResizing = () => {
     setNewElementData(
       stickToGrid(
-        calculateMouseSelection(startingMousePosition, endingMousePosition)
+        calculateMouseSelection(startingMousePosition, endingMousePosition),
+        gridParameters
       )
     );
     setResizing(false);

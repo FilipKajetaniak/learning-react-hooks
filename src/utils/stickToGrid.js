@@ -1,11 +1,11 @@
-export default function stickToGrid(data) {
+export default function stickToGrid(data, gridParameters) {
   // these are not going to be hard-coded in future
-  const horizontalLines = 35;
-  const verticalLines = 26;
+  const horizontalLines = gridParameters.horizontalLines;
+  const verticalLines = gridParameters.verticalLines;
 
   const { left, top, height, width } = data;
   const verticalStep = 100 / verticalLines;
-  const horizontalStep = 1000 / horizontalLines;
+  const horizontalStep = gridParameters.height / horizontalLines;
 
   const calcNearestBreakpoint = (value, step) => {
     if (value % step >= step / 2 ) {

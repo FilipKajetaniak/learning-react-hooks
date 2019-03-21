@@ -3,7 +3,7 @@ import HelperLines from "./HelperLines";
 import MouseSelection from "./MouseSelection";
 import NewElement from "./NewElement";
 import "../../css/Grid.scss";
-import { gridContext } from "../../context/gridContext";
+import { newElementContext } from "../../context/newElementContext";
 
 const initialState = {
   left: null,
@@ -16,11 +16,11 @@ export default function Grid() {
   const [newElementData, setNewElementData] = useState(initialState);
   return (
     <main className="wrapper">
-      <gridContext.Provider value={{ newElementData, setNewElementData }}>
+      <newElementContext.Provider value={{ newElementData, setNewElementData }}>
         <HelperLines />
         <MouseSelection />
         <NewElement data={newElementData} />
-      </gridContext.Provider>
+      </newElementContext.Provider>
     </main>
   );
 }
