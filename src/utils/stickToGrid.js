@@ -3,30 +3,22 @@ export default function stickToGrid(data) {
   const horizontalLines = 35;
   const verticalLines = 26;
 
-  let { left, top, height, width } = data;
-  const verticalStep = 100 / 26;
-  const horizontalStep = 1000 / 35;
+  const { left, top, height, width } = data;
+  const verticalStep = 100 / verticalLines;
+  const horizontalStep = 1000 / horizontalLines;
 
-  // calculating nearest breakpoint for left side
-  if (left % verticalStep >= verticalStep / 2 ) {
-    left = verticalStep * Math.ceil(left / verticalStep)
-  } else {
-    left = verticalStep * Math.floor(left / verticalStep)  
-  }
-
-  // calculating nearest breakpoint for top side
-  if (top % horizontalStep >= horizontalStep / 2 ) {
-    top = horizontalStep * Math.ceil(top / horizontalStep)
-    console.log(top);
-  } else {
-    top = horizontalStep * Math.floor(top / horizontalStep)
-    console.log(top);
+  const calcNearestBreakpoint = (value, step) => {
+    if (value % step >= step / 2 ) {
+     return step * Math.ceil(value / step)
+    } else {
+      return step * Math.floor(value / step)
+    }
   }
 
   return {
-    left,
-    top:  Math.floor(top),
-    height,
-    width
+    left: calcNearestBreakpoint(left, verticalStep),
+    top:  Math.floor(calcNearestBreakpoint(top, horizontalStep)),
+    height: Math.floor(calcNearestBreakpoint(height, horizontalStep)),
+    width: calcNearestBreakpoint(width, verticalStep),
   }
 }
