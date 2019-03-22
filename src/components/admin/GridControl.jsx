@@ -10,7 +10,7 @@ export default function GridControl() {
         setGridParameters({
             ...gridParameters,
             horizontalLines: horizontalLines.current.value,
-            varticalLines: verticalLines.current.value
+            verticalLines: verticalLines.current.value
         })
     }
     const toggleGrid = () => {

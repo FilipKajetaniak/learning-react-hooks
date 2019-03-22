@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import "../../css/NewElement.scss";
+import { elementsContext } from '../../context/elementsContext';
 
 export default function NewElement({ data }) {
+  const { tescik } = useContext(elementsContext);
+  useEffect(() => {
+    console.log('stworzono nowy element')
+    return () => {console.log('usunięto element')}
+  })
   return (
     data && (
       <div

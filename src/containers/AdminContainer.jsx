@@ -6,7 +6,8 @@ export default function AdminContainer({children}) {
         width: 810,
         height: 1000,
         verticalLines: 26,
-        horizontalLines: 35
+        horizontalLines: 35,
+        visible: true
     })
     return (
         <gridContext.Provider value={{gridParameters, setGridParameters}}>

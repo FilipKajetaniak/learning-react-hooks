@@ -3,9 +3,13 @@
 .horizontal {
   width: 100%;
   border-bottom: 1px solid $lgray;
+  border-left: 1px solid $lgray;
   box-sizing: border-box;
   position: absolute;
   z-index: -1;
+  &:first-of-type {
+    border-top: 1px solid $lgray;
+  }
   &:last-of-type {
     border-bottom: none;
   }
