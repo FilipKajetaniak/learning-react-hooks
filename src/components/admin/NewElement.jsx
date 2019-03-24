@@ -1,26 +1,32 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import "../../css/NewElement.scss";
-import { elementsContext } from "../../context/elementsContext";
 
 export default function NewElement({ data }) {
-  const { elements, setElements } = useContext(elementsContext);
-  const addElement = () => {
-    setElements([
-      ...elements,
-      {
-        left: `${data.left}%`,
-        top: `${data.top}px`,
-        width: `${data.width}%`,
-        height: `${data.height}px`,
-        id: new Date().getTime() + Math.floor(Math.random() * 9999999 + 1111111)
-      }
-    ]);
+  const [resizedSides, setResisedSides] = useState({
+    left: false,
+    right: false,
+    top: false,
+    bottom: false
+  });
+  const startResizing = side => {
+    setResisedSides({
+      ...resizedSides,
+      [side]: true
+    });
+  };
+  const resizingRight = e => {
+    console.log("resizing");
+  };
+  const stopResizing = side => {
+    setResisedSides({
+      ...resizedSides,
+      [side]: false
+    });
   };
   return (
     data && (
       <div
         className="new-element"
-        onClick={addElement}
         style={
           data.top || data.left || data.width || data.height
             ? {
@@ -31,7 +37,15 @@ export default function NewElement({ data }) {
               }
             : { display: "none" }
         }
-      />
+      >
+        {String(resizedSides.right)}
+        <div
+          onMouseDown={() => startResizing("right")}
+          onMouseMove={resizingRight}
+          onMouseUp={() => stopResizing("right")}
+          className="right-side-handle"
+        />
+      </div>
     )
   );
 }

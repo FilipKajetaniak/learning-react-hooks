@@ -6,3 +6,13 @@
   box-shadow: 3px 3px 12px -3px #ffc8e8;
   border: 1px solid #ffc8e8;
 }
+
+.right-side-handle {
+  height: 100%;
+  width: 5px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: pink;
+  cursor: e-resize;
+}

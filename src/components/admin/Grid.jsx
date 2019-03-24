@@ -5,16 +5,15 @@ import NewElement from "./NewElement";
 import "../../css/Grid.scss";
 import { newElementContext } from "../../context/newElementContext";
 
-const initialState = {
-  left: null,
-  top: null,
-  width: null,
-  height: null,
-  visible: true
-};
-
 export default function Grid() {
-  const [newElementData, setNewElementData] = useState(initialState);
+  const [newElementData, setNewElementData] = useState({
+    left: null,
+    top: null,
+    width: null,
+    height: null,
+    visible: true
+  });
+
   return (
     <main className="wrapper">
       <newElementContext.Provider value={{ newElementData, setNewElementData }}>
