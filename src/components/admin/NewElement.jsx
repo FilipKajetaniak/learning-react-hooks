@@ -1,24 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { newElementContext } from '../../context/newElementContext';
 import "../../css/NewElement.scss";
 
 export default function NewElement({ data }) {
-  const [resizedSides, setResisedSides] = useState({
+  const [resizedSides, setResizedSides] = useState({
     left: false,
     right: false,
     top: false,
     bottom: false
   });
+  const { newElement, setNewElementData } = useContext(newElementContext);
   const startResizing = side => {
-    setResisedSides({
+    setResizedSides({
       ...resizedSides,
       [side]: true
     });
   };
   const resizingRight = e => {
-    console.log("resizing");
+    if (!resizedSides.right) {return}
+    // setNewElementData({
+    //   ...newElement,
+    //   right: ????
+    // })
   };
   const stopResizing = side => {
-    setResisedSides({
+    setResizedSides({
       ...resizedSides,
       [side]: false
     });
@@ -43,7 +49,7 @@ export default function NewElement({ data }) {
           onMouseDown={() => startResizing("right")}
           onMouseMove={resizingRight}
           onMouseUp={() => stopResizing("right")}
-          className="right-side-handle"
+          className={resizedSides.right ? "right-side-handle resized" : "right-side-handle"}
         />
       </div>
     )

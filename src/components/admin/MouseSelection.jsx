@@ -18,7 +18,7 @@ export default function MouseSelection() {
   const { setNewElementData } = useContext(newElementContext);
   const { gridParameters } = useContext(gridContext);
   const resizing = e => {
-    if (!isResizing) {
+    if (!isResizing || !gridParameters.canSelect) {
       return;
     }
     setEndingMousePosition({
@@ -35,6 +35,9 @@ export default function MouseSelection() {
     });
   };
   const stopResizing = () => {
+    if (!gridParameters.canSelect) {
+      return;
+    }
     setNewElementData(
       stickToGrid(
         calculateMouseSelection(startingMousePosition, endingMousePosition),

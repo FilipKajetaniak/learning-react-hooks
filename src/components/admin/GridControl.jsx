@@ -19,6 +19,12 @@ export default function GridControl() {
             visible: !gridParameters.visible
         })
     }
+    const toggleSelecting = () => {
+        setGridParameters({
+            ...gridParameters,
+            canSelect: !gridParameters.canSelect
+        })
+    }
     return (
         <div className="grid-control">
             horizontal lines: <br/>
@@ -37,7 +43,8 @@ export default function GridControl() {
             /> <br/>
             <button onClick={submit}>Save</button>
             <br/>
-            <button onClick={toggleGrid}>Toggle grid</button>
+            <button onClick={toggleGrid}>Toggle grid</button> <br/>
+            <button onClick={toggleSelecting}>{gridParameters.canSelect ? "Disable selecting" : "Enable selecting"}</button>
         </div>
     )
 }
