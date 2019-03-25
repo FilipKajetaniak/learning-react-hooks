@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { newElementContext } from '../../context/newElementContext';
+import calculateSide from "../../utils/calculateSide";
 import "../../css/NewElement.scss";
 
 export default function NewElement({ data }) {
@@ -17,10 +18,12 @@ export default function NewElement({ data }) {
     });
   };
   const resizingRight = e => {
+    e.persist();
     if (!resizedSides.right) {return}
+    calculateSide('right', e)
     // setNewElementData({
     //   ...newElement,
-    //   right: ????
+    //   right: calculateSide('right', e)
     // })
   };
   const stopResizing = side => {
