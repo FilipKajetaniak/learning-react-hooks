@@ -28,6 +28,9 @@ export default function MouseSelection() {
   };
   const startResizing = e => {
     e.preventDefault();
+    if (!gridParameters.canSelect) {
+      return;
+    }
     setResizing(true);
     setStartingMousePosition({
       x: e.clientX,

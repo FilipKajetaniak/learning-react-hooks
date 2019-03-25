@@ -9,10 +9,15 @@
 
 .right-side-handle {
   height: 100%;
-  width: 5px;
+  width: 4px;
   position: absolute;
-  right: 0;
+  right: -2px;
   top: 0;
   background-color: pink;
   cursor: e-resize;
+  opacity: 0;
+  &.resized {
+    width: 180px;
+    right: -90px;
+  }
 }
