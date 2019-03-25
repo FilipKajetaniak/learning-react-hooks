@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import { newElementContext } from "../../context/newElementContext";
-import { gridContext } from "../../context/gridContext";
 import calculateSide from "../../utils/calculateSide";
 import "../../css/NewElement.scss";
 
@@ -11,13 +10,8 @@ export default function NewElement({ data }) {
     top: false,
     bottom: false
   });
-  const { newElement, setNewElementData } = useContext(newElementContext);
-  const { gridParameters, setGridParameters } = useContext(gridContext);
+  const { setNewElementData } = useContext(newElementContext);
   const startResizing = side => {
-    setGridParameters({
-      ...gridParameters,
-      canSelect: false
-    });
     setResizedSides({
       ...resizedSides,
       [side]: true
@@ -33,14 +27,20 @@ export default function NewElement({ data }) {
       width: calculateSide("right", e, data)
     });
   };
+  const resizingBottom = e => {
+    e.persist();
+    if (!resizedSides.bottom) {
+      return;
+    }
+    setNewElementData({
+      ...data,
+      height: calculateSide("bottom", e, data)
+    });
+  };
   const stopResizing = side => {
     setResizedSides({
       ...resizedSides,
       [side]: false
-    });
-    setGridParameters({
-      ...gridParameters,
-      canSelect: true
     });
   };
   return (
@@ -58,7 +58,7 @@ export default function NewElement({ data }) {
             : { display: "none" }
         }
       >
-        {String(resizedSides.right)}
+        {String(resizedSides.bottom)}
         <div
           onMouseDown={() => startResizing("right")}
           onMouseMove={resizingRight}
@@ -67,6 +67,16 @@ export default function NewElement({ data }) {
             resizedSides.right
               ? "right-side-handle resized"
               : "right-side-handle"
+          }
+        />
+        <div
+          onMouseDown={() => startResizing("bottom")}
+          onMouseMove={resizingBottom}
+          onMouseUp={() => stopResizing("bottom")}
+          className={
+            resizedSides.bottom
+              ? "bottom-side-handle resized"
+              : "bottom-side-handle"
           }
         />
       </div>

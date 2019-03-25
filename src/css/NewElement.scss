@@ -13,11 +13,24 @@
   position: absolute;
   right: -2px;
   top: 0;
-  background-color: pink;
   cursor: e-resize;
   opacity: 0;
   &.resized {
     width: 180px;
     right: -90px;
+  }
+}
+
+.bottom-side-handle {
+  height: 4px;
+  width: 100%;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  cursor: n-resize;
+  opacity: 0;
+  &.resized {
+    height: 180px;
+    bottom: -90px;
   }
 }
