@@ -1,10 +1,14 @@
 Fix top side resizing
 
+Add size of single cell to grid context to calculat min size for new element
+
+Adjust newElement position on x-axis when moving
+
 Refactor calculating size code
 
 // Add snapping to grid functionality
 
-Add option to move newElement throught the grid
+//  Add option to move newElement throught the grid
 
 Handle issues with moving out of grid
 
