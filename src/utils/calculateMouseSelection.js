@@ -1,3 +1,5 @@
+import getMarginWidth from "./getMarginWidth";
+
 // this function accepts arguments for position where cursor
 // was clickend (start - {x: number, y: number})
 // and where it was released (end - {x: number, y: number})
@@ -15,13 +17,7 @@ export default function calculateStyles(start, end) {
       height: null
     };
   }
-  // if window is wider than the grid we need to calculate margins
-  let margin = 0;
-  let gridWidth = document.documentElement.clientWidth;
-  if (document.documentElement.clientWidth > 810) {
-    margin = (document.documentElement.clientWidth - 810) / 2;
-    gridWidth = 810;
-  }
+  const { margin, gridWidth } = getMarginWidth();
   const differenceX = end.x - start.x;
   const differenceY = end.y - start.y;
 

@@ -1,4 +1,4 @@
-Add left and top side resizing to newElement
+Fix top side resizing
 
 Refactor calculating size code
 
@@ -7,4 +7,6 @@ Refactor calculating size code
 Add option to move newElement throught the grid
 
 Handle issues with moving out of grid
+
+Set a minimum height and width for new element when resizing
 

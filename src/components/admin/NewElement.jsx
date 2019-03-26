@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import ResizingHandles from "./ResizingHandles";
+import MovingHandle from "./MovingHandle";
 import "../../css/NewElement.scss";
 import { gridContext } from "../../context/gridContext";
 import stickToGrid from "../../utils/stickToGrid";
@@ -22,6 +23,7 @@ export default function NewElement(props) {
             : { display: "none" }
         }
       >
+        <MovingHandle currentParameters={data} />
         <ResizingHandles currentParameters={data} />
       </div>
     )

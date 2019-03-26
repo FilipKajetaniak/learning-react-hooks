@@ -1,0 +1,12 @@
+.moving-handle {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  cursor: move;
+  &.moving {
+    width: 100vw;
+    height: 100vh;
+    left: -50vw;
+    top: -50vh;
+  }
+}
