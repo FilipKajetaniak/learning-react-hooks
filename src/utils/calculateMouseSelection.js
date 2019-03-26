@@ -3,7 +3,7 @@ import getMarginWidth from "./getMarginWidth";
 // this function accepts arguments for position where cursor
 // was clickend (start - {x: number, y: number})
 // and where it was released (end - {x: number, y: number})
-export default function calculateStyles(start, end) {
+export default function calculateStyles(start, end, width) {
   if (
     start.x === null ||
     start.y === null ||
@@ -17,7 +17,7 @@ export default function calculateStyles(start, end) {
       height: null
     };
   }
-  const { margin, gridWidth } = getMarginWidth();
+  const { margin, gridWidth } = getMarginWidth(width);
   const differenceX = end.x - start.x;
   const differenceY = end.y - start.y;
 

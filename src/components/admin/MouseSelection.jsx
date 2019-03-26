@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import Selection from "./Selection";
 import { newElementContext } from "../../context/newElementContext";
 import { gridContext } from "../../context/gridContext";
-import stickToGrid from "../../utils/stickToGrid";
 import calculateMouseSelection from "../../utils/calculateMouseSelection";
 
 export default function MouseSelection() {
@@ -42,7 +41,11 @@ export default function MouseSelection() {
       return;
     }
     setNewElementData(
-      calculateMouseSelection(startingMousePosition, endingMousePosition)
+      calculateMouseSelection(
+        startingMousePosition,
+        endingMousePosition,
+        gridParameters.width
+      )
     );
     setResizing(false);
     setEndingMousePosition({ x: null, y: null });

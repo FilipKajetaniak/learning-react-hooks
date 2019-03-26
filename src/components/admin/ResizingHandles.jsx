@@ -1,11 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { newElementContext } from "../../context/newElementContext";
 import SingleResizeHandle from "./SingleResizeHandle";
 import "../../css/ResizingHandles.scss";
 import getMarginWidth from "../../utils/getMarginWidth";
+import { gridContext } from "../../context/gridContext";
 
 export default function ResizingHandles({ currentParameters }) {
   const { setNewElementData } = useContext(newElementContext);
+  const { gridParameters } = useContext(gridContext);
   const sides = [
     "top",
     "bottom",
@@ -18,7 +20,7 @@ export default function ResizingHandles({ currentParameters }) {
   ];
   const resizing = (e, side) => {
     e.persist();
-    const { margin, gridWidth } = getMarginWidth();
+    const { margin, gridWidth } = getMarginWidth(gridParameters.width);
     switch (side) {
       case "right":
         setNewElementData({
