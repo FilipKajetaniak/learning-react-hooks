@@ -42,10 +42,7 @@ export default function MouseSelection() {
       return;
     }
     setNewElementData(
-      stickToGrid(
-        calculateMouseSelection(startingMousePosition, endingMousePosition),
-        gridParameters
-      )
+      calculateMouseSelection(startingMousePosition, endingMousePosition)
     );
     setResizing(false);
     setEndingMousePosition({ x: null, y: null });

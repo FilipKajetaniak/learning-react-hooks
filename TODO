@@ -2,7 +2,7 @@ Add left and top side resizing to newElement
 
 Refactor calculating size code
 
-Add snapping to grid functionality
+// Add snapping to grid functionality
 
 Add option to move newElement throught the grid
 

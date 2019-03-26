@@ -6,31 +6,3 @@
   box-shadow: 3px 3px 12px -3px #ffc8e8;
   border: 1px solid #ffc8e8;
 }
-
-.right-side-handle {
-  height: 100%;
-  width: 4px;
-  position: absolute;
-  right: -2px;
-  top: 0;
-  cursor: e-resize;
-  opacity: 0;
-  &.resized {
-    width: 180px;
-    right: -90px;
-  }
-}
-
-.bottom-side-handle {
-  height: 4px;
-  width: 100%;
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  cursor: n-resize;
-  opacity: 0;
-  &.resized {
-    height: 180px;
-    bottom: -90px;
-  }
-}

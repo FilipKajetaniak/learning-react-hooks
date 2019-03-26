@@ -1,48 +1,12 @@
-import React, { useState, useContext } from "react";
-import { newElementContext } from "../../context/newElementContext";
-import calculateSide from "../../utils/calculateSide";
+import React, { useContext } from "react";
+import ResizingHandles from "./ResizingHandles";
 import "../../css/NewElement.scss";
+import { gridContext } from "../../context/gridContext";
+import stickToGrid from "../../utils/stickToGrid";
 
-export default function NewElement({ data }) {
-  const [resizedSides, setResizedSides] = useState({
-    left: false,
-    right: false,
-    top: false,
-    bottom: false
-  });
-  const { setNewElementData } = useContext(newElementContext);
-  const startResizing = side => {
-    setResizedSides({
-      ...resizedSides,
-      [side]: true
-    });
-  };
-  const resizingRight = e => {
-    e.persist();
-    if (!resizedSides.right) {
-      return;
-    }
-    setNewElementData({
-      ...data,
-      width: calculateSide("right", e, data)
-    });
-  };
-  const resizingBottom = e => {
-    e.persist();
-    if (!resizedSides.bottom) {
-      return;
-    }
-    setNewElementData({
-      ...data,
-      height: calculateSide("bottom", e, data)
-    });
-  };
-  const stopResizing = side => {
-    setResizedSides({
-      ...resizedSides,
-      [side]: false
-    });
-  };
+export default function NewElement(props) {
+  const { gridParameters } = useContext(gridContext);
+  const data = stickToGrid(props.data, gridParameters);
   return (
     data && (
       <div
@@ -58,27 +22,7 @@ export default function NewElement({ data }) {
             : { display: "none" }
         }
       >
-        {String(resizedSides.bottom)}
-        <div
-          onMouseDown={() => startResizing("right")}
-          onMouseMove={resizingRight}
-          onMouseUp={() => stopResizing("right")}
-          className={
-            resizedSides.right
-              ? "right-side-handle resized"
-              : "right-side-handle"
-          }
-        />
-        <div
-          onMouseDown={() => startResizing("bottom")}
-          onMouseMove={resizingBottom}
-          onMouseUp={() => stopResizing("bottom")}
-          className={
-            resizedSides.bottom
-              ? "bottom-side-handle resized"
-              : "bottom-side-handle"
-          }
-        />
+        <ResizingHandles currentParameters={data} />
       </div>
     )
   );
