@@ -37,13 +37,23 @@ export default function MovingHandle({ currentParameters }) {
         if (!isMoving) {
           return;
         }
+        const applyBorders = left => {
+          if (left <= 0) {
+            return 0;
+          } else if (left >= 100 - currentParameters.width) {
+            return currentParameters.left;
+          } else {
+            return left;
+          }
+        };
+        const newLeft =
+          Math.round(((e.clientX - margin - offset.left) / gridWidth) * 1000) /
+          10;
+        const newTop = e.clientY - offset.top;
         setNewElementData({
           ...currentParameters,
-          top: e.clientY - offset.top,
-          left:
-            Math.round(
-              ((e.clientX - margin - offset.left) / gridWidth) * 1000
-            ) / 10
+          top: newTop <= 0 ? 0 : newTop,
+          left: applyBorders(newLeft)
         });
       }}
     />

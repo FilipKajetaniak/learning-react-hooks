@@ -12,7 +12,7 @@ export default function NewElement(props) {
     ? stickToGrid(props.data, gridParameters)
     : props.data;
   return (
-    !!(data.top && data.left && data.width && data.height) && (
+    !!(data.width && data.height) && (
       <div
         className="new-element"
         style={{
