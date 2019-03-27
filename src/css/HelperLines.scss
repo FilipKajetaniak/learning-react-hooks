@@ -19,9 +19,9 @@
   height: 100%;
   position: absolute;
   z-index: -1;
-  &:last-of-type {
-    border-right: none;
-  }
+  // &:last-of-type {
+  //   border-right: 1px solid $lgray;
+  // }
 }
 
 .center {

@@ -4,6 +4,7 @@ import MovingHandle from "./MovingHandle";
 import "../../css/NewElement.scss";
 import { gridContext } from "../../context/gridContext";
 import stickToGrid from "../../utils/stickToGrid";
+import NewElementControls from "./NewElementControls";
 
 export default function NewElement(props) {
   const { gridParameters } = useContext(gridContext);
@@ -11,22 +12,19 @@ export default function NewElement(props) {
     ? stickToGrid(props.data, gridParameters)
     : props.data;
   return (
-    data && (
+    !!(data.top && data.left && data.width && data.height) && (
       <div
         className="new-element"
-        style={
-          data.top || data.left || data.width || data.height
-            ? {
-                left: `${data.left}%`,
-                top: `${data.top}px`,
-                width: `${data.width}%`,
-                height: `${data.height}px`
-              }
-            : { display: "none" }
-        }
+        style={{
+          left: `${data.left}%`,
+          top: `${data.top}px`,
+          width: `${data.width}%`,
+          height: `${data.height}px`
+        }}
       >
         <MovingHandle currentParameters={data} />
         <ResizingHandles currentParameters={data} />
+        <NewElementControls />
       </div>
     )
   );
