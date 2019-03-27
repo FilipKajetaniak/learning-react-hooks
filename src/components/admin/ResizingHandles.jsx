@@ -18,6 +18,23 @@ export default function ResizingHandles({ currentParameters }) {
     "bottom-right",
     "bottom-left"
   ];
+
+  const withMinWidth = width => {
+    const cellWidth =
+      Math.round(
+        (gridParameters.width /
+          gridParameters.verticalLines /
+          gridParameters.width) *
+          100 *
+          10
+      ) / 10;
+    return width < cellWidth ? cellWidth : width;
+  };
+  const withMinHeight = height => {
+    const cellHeight = gridParameters.height / gridParameters.horizontalLines;
+    return height < cellHeight ? cellHeight : height;
+  };
+
   const resizing = (e, side) => {
     e.persist();
     const { margin, gridWidth } = getMarginWidth(gridParameters.width);
@@ -25,7 +42,7 @@ export default function ResizingHandles({ currentParameters }) {
       case "right":
         setNewElementData({
           ...currentParameters,
-          width:
+          width: withMinWidth(
             Math.round(
               ((e.clientX -
                 margin -
@@ -34,53 +51,39 @@ export default function ResizingHandles({ currentParameters }) {
                 100 *
                 10
             ) / 10
+          )
         });
         break;
       case "bottom":
         setNewElementData({
           ...currentParameters,
-          height: e.clientY - currentParameters.top
+          height: withMinHeight(e.clientY - currentParameters.top)
         });
         break;
       case "left":
         setNewElementData({
           ...currentParameters,
           left: Math.round(((e.clientX - margin) / gridWidth) * 100 * 10) / 10,
-          width:
+          width: withMinWidth(
             currentParameters.width +
-            (currentParameters.left -
-              Math.round(((e.clientX - margin) / gridWidth) * 100 * 10) / 10)
+              (currentParameters.left -
+                Math.round(((e.clientX - margin) / gridWidth) * 100 * 10) / 10)
+          )
         });
         break;
       case "top":
         setNewElementData({
           ...currentParameters,
           top: e.clientY,
-          height: currentParameters.height + (currentParameters.top - e.clientY)
+          height: withMinHeight(
+            currentParameters.height + (currentParameters.top - e.clientY)
+          )
         });
         break;
       case "bottom-right":
         setNewElementData({
           ...currentParameters,
-          width:
-            Math.round(
-              ((e.clientX -
-                margin -
-                (currentParameters.left / 100) * gridWidth) /
-                gridWidth) *
-                100 *
-                10
-            ) / 10,
-          height: e.clientY - currentParameters.top
-        });
-        break;
-      case "top-right":
-        setNewElementData({
-          ...currentParameters,
-          top: e.clientY,
-          height:
-            currentParameters.height + (currentParameters.top - e.clientY),
-          width:
+          width: withMinWidth(
             Math.round(
               ((e.clientX -
                 margin -
@@ -89,29 +92,54 @@ export default function ResizingHandles({ currentParameters }) {
                 100 *
                 10
             ) / 10
+          ),
+          height: withMinHeight(e.clientY - currentParameters.top)
+        });
+        break;
+      case "top-right":
+        setNewElementData({
+          ...currentParameters,
+          top: e.clientY,
+          height: withMinHeight(
+            currentParameters.height + (currentParameters.top - e.clientY)
+          ),
+          width: withMinWidth(
+            Math.round(
+              ((e.clientX -
+                margin -
+                (currentParameters.left / 100) * gridWidth) /
+                gridWidth) *
+                100 *
+                10
+            ) / 10
+          )
         });
         break;
       case "bottom-left":
         setNewElementData({
           ...currentParameters,
-          height: e.clientY - currentParameters.top,
+          height: withMinHeight(e.clientY - currentParameters.top),
           left: Math.round(((e.clientX - margin) / gridWidth) * 100 * 10) / 10,
-          width:
+          width: withMinWidth(
             currentParameters.width +
-            (currentParameters.left -
-              Math.round(((e.clientX - margin) / gridWidth) * 100 * 10) / 10)
+              (currentParameters.left -
+                Math.round(((e.clientX - margin) / gridWidth) * 100 * 10) / 10)
+          )
         });
         break;
       case "top-left":
         setNewElementData({
           ...currentParameters,
           left: Math.round(((e.clientX - margin) / gridWidth) * 100 * 10) / 10,
-          width:
+          width: withMinWidth(
             currentParameters.width +
-            (currentParameters.left -
-              Math.round(((e.clientX - margin) / gridWidth) * 100 * 10) / 10),
+              (currentParameters.left -
+                Math.round(((e.clientX - margin) / gridWidth) * 100 * 10) / 10)
+          ),
           top: e.clientY,
-          height: currentParameters.height + (currentParameters.top - e.clientY)
+          height: withMinHeight(
+            currentParameters.height + (currentParameters.top - e.clientY)
+          )
         });
         break;
       default:

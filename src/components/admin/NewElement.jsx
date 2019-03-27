@@ -7,7 +7,9 @@ import stickToGrid from "../../utils/stickToGrid";
 
 export default function NewElement(props) {
   const { gridParameters } = useContext(gridContext);
-  const data = stickToGrid(props.data, gridParameters);
+  const data = gridParameters.visible
+    ? stickToGrid(props.data, gridParameters)
+    : props.data;
   return (
     data && (
       <div
