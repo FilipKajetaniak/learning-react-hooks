@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
-import { gridContext } from '../context/gridContext';
+import React, { useState } from "react";
+import { gridContext } from "../context/gridContext";
 
-export default function AdminContainer({children}) {
-    const [gridParameters, setGridParameters] = useState({
-        width: 810,
-        height: 1000,
-        verticalLines: 26,
-        horizontalLines: 35,
-        visible: true,
-        canSelect: true
-    })
-    return (
-        <gridContext.Provider value={{gridParameters, setGridParameters}}>
-            {children}
-        </gridContext.Provider>
-    )
+export default function AdminContainer({ children }) {
+  const [gridParameters, setGridParameters] = useState({
+    width: 810,
+    height: 1000,
+    verticalLines: 26,
+    horizontalLines: 35,
+    visible: true,
+    canSelect: true,
+    stickingToGrid: true
+  });
+  return (
+    <gridContext.Provider value={{ gridParameters, setGridParameters }}>
+      {children}
+    </gridContext.Provider>
+  );
 }

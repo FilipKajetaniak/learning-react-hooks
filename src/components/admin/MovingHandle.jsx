@@ -7,7 +7,7 @@ import { gridContext } from "../../context/gridContext";
 export default function MovingHandle({ currentParameters }) {
   const { setNewElementData } = useContext(newElementContext);
   const { gridParameters } = useContext(gridContext);
-  const [topOffset, setTopOffset] = useState(0);
+  const [offset, setOffset] = useState(0);
   const [isMoving, setIsMoving] = useState(false);
   const { margin, gridWidth } = getMarginWidth(gridParameters.width);
   const movingHandleDiv = useRef();
@@ -17,12 +17,21 @@ export default function MovingHandle({ currentParameters }) {
       ref={movingHandleDiv}
       className={isMoving ? "moving-handle moving" : "moving-handle"}
       onMouseDown={e => {
-        setTopOffset(
-          e.clientY - movingHandleDiv.current.parentElement.offsetTop
-        );
+        setOffset({
+          top: e.clientY - movingHandleDiv.current.parentElement.offsetTop,
+          left:
+            Math.round(
+              (e.clientX -
+                margin -
+                (currentParameters.left * gridWidth) / 100) *
+                10
+            ) / 10
+        });
         setIsMoving(true);
       }}
-      onMouseUp={() => setIsMoving(false)}
+      onMouseUp={() => {
+        setIsMoving(false);
+      }}
       onMouseMove={e => {
         e.persist();
         if (!isMoving) {
@@ -30,8 +39,11 @@ export default function MovingHandle({ currentParameters }) {
         }
         setNewElementData({
           ...currentParameters,
-          top: e.clientY - topOffset,
-          left: Math.round(((e.clientX - margin) / gridWidth) * 100 * 10) / 10
+          top: e.clientY - offset.top,
+          left:
+            Math.round(
+              ((e.clientX - margin - offset.left) / gridWidth) * 1000
+            ) / 10
         });
       }}
     />

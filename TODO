@@ -2,6 +2,8 @@ Fix top side resizing
 
 Fix element moving on resizing when left and top side is smaller than cell
 
+Split hooks to custom hooks
+
 // Add size of single cell to grid context to calculat min size for new element
 
 Adjust newElement position on x-axis when moving
