@@ -3,7 +3,7 @@ import "../../css/NewElementControls.scss";
 import { gridContext } from "../../context/gridContext";
 import { newElementContext } from "../../context/newElementContext";
 
-export default function NewElementControls() {
+export default function NewElementControls(props) {
   const { gridParameters, setGridParameters } = useContext(gridContext);
   const { newElementData, setNewElementData } = useContext(newElementContext);
   useEffect(() => {
@@ -13,6 +13,7 @@ export default function NewElementControls() {
     });
   }, []);
   const accept = () => {
+    props.onAccept();
     setNewElementData({
       left: null,
       top: null,
