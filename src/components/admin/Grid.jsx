@@ -5,6 +5,7 @@ import NewElement from "./NewElement";
 import "../../css/Grid.scss";
 import { newElementContext } from "../../context/newElementContext";
 import { gridContext } from "../../context/gridContext";
+import GridResizeHandles from "./GridResizeHandles";
 
 export default function Grid() {
   const { gridParameters } = useContext(gridContext);
@@ -16,12 +17,15 @@ export default function Grid() {
     visible: true
   });
   return (
-    <main className="wrapper" style={{ maxWidth: gridParameters.width }}>
-      <newElementContext.Provider value={{ newElementData, setNewElementData }}>
-        <HelperLines />
-        <MouseSelection />
-        <NewElement data={newElementData} />
-      </newElementContext.Provider>
-    </main>
+    <newElementContext.Provider value={{ newElementData, setNewElementData }}>
+      <main className="wrapper" style={{ maxWidth: gridParameters.width }}>
+        <div className="grid">
+          <HelperLines />
+          <MouseSelection />
+          <NewElement data={newElementData} />
+        </div>
+        <GridResizeHandles />
+      </main>
+    </newElementContext.Provider>
   );
 }

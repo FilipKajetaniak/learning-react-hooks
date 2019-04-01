@@ -20,14 +20,16 @@ export default function MouseSelection() {
     if (!isResizing || !gridParameters.canSelect) {
       return;
     }
+
     setEndingMousePosition({
       x: e.clientX,
       y: e.clientY
     });
   };
   const startResizing = e => {
+    console.log("MOUSE SELECT");
     e.preventDefault();
-    if (!gridParameters.canSelect) {
+    if (gridParameters.canSelect === false) {
       return;
     }
     setResizing(true);
@@ -36,7 +38,7 @@ export default function MouseSelection() {
       y: e.clientY
     });
   };
-  const stopResizing = () => {
+  const stopResizing = e => {
     if (!gridParameters.canSelect) {
       return;
     }
@@ -52,7 +54,7 @@ export default function MouseSelection() {
     setStartingMousePosition({ x: null, y: null });
   };
   useEffect(() => {
-    const grid = document.querySelector(".wrapper");
+    const grid = document.querySelector(".grid");
     grid.addEventListener("mousemove", resizing);
     grid.addEventListener("mousedown", startResizing);
     grid.addEventListener("mouseup", stopResizing);

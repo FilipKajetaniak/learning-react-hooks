@@ -1,0 +1,22 @@
+.grid-resize-handle {
+  position: absolute;
+  height: 100%;
+  width: 4px;
+  top: 0;
+  opacity: 0;
+  cursor: ew-resize;
+  &.grid-handle-left {
+    left: -2px;
+    &.resizing {
+      width: 100vw;
+      left: -50vw;
+    }
+  }
+  &.grid-handle-right {
+    right: -2px;
+    &.resizing {
+      width: 100vw;
+      right: -50vw;
+    }
+  }
+}
