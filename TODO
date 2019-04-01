@@ -2,7 +2,7 @@ Fix top side resizing
 
 Fix element moving on resizing when left and top side is smaller than cell
 
-Fix newElement disappearing when moved out of grid
+// Fix newElement disappearing when moved out of grid
 
 Split hooks to custom hooks
 

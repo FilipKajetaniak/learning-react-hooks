@@ -17,6 +17,8 @@ export default function calculateStyles(start, end, width) {
       height: null
     };
   }
+  const gridElement = document.querySelector(".wrapper");
+  const applyTopMargin = top => top - gridElement.offsetTop;
   const { margin, gridWidth } = getMarginWidth(width);
   const differenceX = end.x - start.x;
   const differenceY = end.y - start.y;
@@ -26,7 +28,7 @@ export default function calculateStyles(start, end, width) {
   if (differenceX > 0 && differenceY > 0) {
     return {
       left: toPercent(start.x - margin),
-      top: start.y,
+      top: applyTopMargin(start.y),
       width: toPercent(differenceX),
       height: differenceY
     };
@@ -34,7 +36,7 @@ export default function calculateStyles(start, end, width) {
   else if (differenceX > 0 && differenceY < 0) {
     return {
       left: toPercent(start.x - margin),
-      top: end.y,
+      top: applyTopMargin(end.y),
       width: toPercent(differenceX),
       height: start.y - end.y
     };
@@ -42,7 +44,7 @@ export default function calculateStyles(start, end, width) {
   else if (differenceX < 0 && differenceY < 0) {
     return {
       left: toPercent(end.x - margin),
-      top: end.y,
+      top: applyTopMargin(end.y),
       width: toPercent(start.x - end.x),
       height: start.y - end.y
     };
@@ -50,7 +52,7 @@ export default function calculateStyles(start, end, width) {
   else {
     return {
       left: toPercent(end.x - margin),
-      top: start.y,
+      top: applyTopMargin(start.y),
       width: toPercent(start.x - end.x),
       height: differenceY
     };

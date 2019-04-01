@@ -18,7 +18,8 @@ export default function ResizingHandles({ currentParameters }) {
     "bottom-right",
     "bottom-left"
   ];
-
+  const gridElement = document.querySelector(".wrapper");
+  const applyTopMargin = top => top - gridElement.offsetTop;
   const withMinWidth = width => {
     const cellWidth =
       Math.round(
@@ -57,7 +58,9 @@ export default function ResizingHandles({ currentParameters }) {
       case "bottom":
         setNewElementData({
           ...currentParameters,
-          height: withMinHeight(e.clientY - currentParameters.top)
+          height: withMinHeight(
+            applyTopMargin(e.clientY - currentParameters.top)
+          )
         });
         break;
       case "left":
@@ -74,7 +77,7 @@ export default function ResizingHandles({ currentParameters }) {
       case "top":
         setNewElementData({
           ...currentParameters,
-          top: e.clientY,
+          top: applyTopMargin(e.clientY),
           height: withMinHeight(
             currentParameters.height + (currentParameters.top - e.clientY)
           )
@@ -93,15 +96,19 @@ export default function ResizingHandles({ currentParameters }) {
                 10
             ) / 10
           ),
-          height: withMinHeight(e.clientY - currentParameters.top)
+          height: withMinHeight(
+            applyTopMargin(e.clientY - currentParameters.top)
+          )
         });
         break;
       case "top-right":
         setNewElementData({
           ...currentParameters,
-          top: e.clientY,
+          top: applyTopMargin(e.clientY),
           height: withMinHeight(
-            currentParameters.height + (currentParameters.top - e.clientY)
+            applyTopMargin(
+              currentParameters.height + (currentParameters.top - e.clientY)
+            )
           ),
           width: withMinWidth(
             Math.round(
@@ -118,7 +125,9 @@ export default function ResizingHandles({ currentParameters }) {
       case "bottom-left":
         setNewElementData({
           ...currentParameters,
-          height: withMinHeight(e.clientY - currentParameters.top),
+          height: withMinHeight(
+            applyTopMargin(e.clientY - currentParameters.top)
+          ),
           left: Math.round(((e.clientX - margin) / gridWidth) * 100 * 10) / 10,
           width: withMinWidth(
             currentParameters.width +
@@ -138,7 +147,9 @@ export default function ResizingHandles({ currentParameters }) {
           ),
           top: e.clientY,
           height: withMinHeight(
-            currentParameters.height + (currentParameters.top - e.clientY)
+            applyTopMargin(
+              currentParameters.height + (currentParameters.top - e.clientY)
+            )
           )
         });
         break;

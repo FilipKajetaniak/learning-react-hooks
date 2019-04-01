@@ -7,6 +7,7 @@ import { newElementContext } from "../../context/newElementContext";
 import { gridContext } from "../../context/gridContext";
 import GridResizeHandles from "./GridResizeHandles";
 import InfoModal from "./InfoModal";
+import SettingsBar from "./SettingsBar";
 
 export default function Grid() {
   const { gridParameters } = useContext(gridContext);
@@ -19,6 +20,7 @@ export default function Grid() {
   });
   return (
     <newElementContext.Provider value={{ newElementData, setNewElementData }}>
+      <SettingsBar />
       <main className="wrapper" style={{ maxWidth: gridParameters.width }}>
         <div className="grid">
           <HelperLines />
