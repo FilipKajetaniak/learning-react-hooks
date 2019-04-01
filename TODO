@@ -1,5 +1,7 @@
 Fix top side resizing
 
+Move logic for calculating mouse position relative to grid to a reusable function
+
 Fix element moving on resizing when left and top side is smaller than cell
 
 // Fix newElement disappearing when moved out of grid
@@ -21,4 +23,3 @@ Refactor calculating size code
 Handle issues with moving out of grid
 
 // Set a minimum height and width for new element when resizing
-
