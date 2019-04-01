@@ -1,10 +1,12 @@
 import React, { useState, useContext } from "react";
 import "../../css/GridResizeHandles.scss";
 import { gridContext } from "../../context/gridContext";
+import { newElementContext } from "../../context/newElementContext";
 
 export default function GridResizeHandles() {
   const [resizing, setResizing] = useState({ left: false, right: false });
   const { gridParameters, setGridParameters } = useContext(gridContext);
+  const { newElementData } = useContext(newElementContext);
   const windowWidth = document.documentElement.clientWidth;
   const resize = (e, side) => {
     if (!resizing[side]) {
@@ -14,6 +16,7 @@ export default function GridResizeHandles() {
     const gridWidth = windowWidth - margin * 2;
     setGridParameters({
       ...gridParameters,
+      message: `${gridWidth < 50 ? 50 : gridWidth}px`,
       width: gridWidth < 50 ? 50 : gridWidth
     });
   };
@@ -36,11 +39,15 @@ export default function GridResizeHandles() {
     });
     setGridParameters({
       ...gridParameters,
+      message: "",
       canSelect: true
     });
   };
   return (
-    windowWidth > gridParameters.width && (
+    windowWidth > gridParameters.width &&
+    gridParameters.visible &&
+    !newElementData.width &&
+    !newElementData.height && (
       <>
         <div
           className={

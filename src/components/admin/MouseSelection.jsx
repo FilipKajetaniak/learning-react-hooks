@@ -27,7 +27,6 @@ export default function MouseSelection() {
     });
   };
   const startResizing = e => {
-    console.log("MOUSE SELECT");
     e.preventDefault();
     if (gridParameters.canSelect === false) {
       return;

@@ -9,7 +9,8 @@ export default function AdminContainer({ children }) {
     horizontalLines: 35,
     visible: true,
     canSelect: true,
-    stickingToGrid: true
+    stickingToGrid: true,
+    message: ""
   });
   return (
     <gridContext.Provider value={{ gridParameters, setGridParameters }}>

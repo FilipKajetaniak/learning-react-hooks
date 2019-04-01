@@ -6,6 +6,7 @@ import "../../css/Grid.scss";
 import { newElementContext } from "../../context/newElementContext";
 import { gridContext } from "../../context/gridContext";
 import GridResizeHandles from "./GridResizeHandles";
+import InfoModal from "./InfoModal";
 
 export default function Grid() {
   const { gridParameters } = useContext(gridContext);
@@ -25,6 +26,9 @@ export default function Grid() {
           <NewElement data={newElementData} />
         </div>
         <GridResizeHandles />
+        {gridParameters.message && (
+          <InfoModal message={gridParameters.message} />
+        )}
       </main>
     </newElementContext.Provider>
   );

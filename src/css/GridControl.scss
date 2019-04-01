@@ -1,9 +1,10 @@
-.grid-control{
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    z-index: 999;
-    border: solid 1px black;
-    padding: 10px;
-    background-color: aquamarine;
+.grid-control {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 999;
+  border: solid 1px black;
+  padding: 10px;
+  background-color: aquamarine;
+  display: none;
 }

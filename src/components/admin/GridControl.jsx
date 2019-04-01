@@ -27,9 +27,10 @@ export default function GridControl() {
       canSelect: !gridParameters.canSelect
     });
   };
+  // TEMPORARY HIDDEN - REMEMBER TO REMOVE DISPLAY: NONE FROM SCSS FILE
   return (
     <div className="grid-control">
-      Grid width: <br />
+      {/* Grid width: <br />
       <input
         type="number"
         ref={gridWidth}
@@ -58,7 +59,7 @@ export default function GridControl() {
       <button onClick={toggleGrid}>Toggle grid</button> <br />
       <button onClick={toggleSelecting}>
         {gridParameters.canSelect ? "Disable selecting" : "Enable selecting"}
-      </button>
+      </button> */}
     </div>
   );
 }
