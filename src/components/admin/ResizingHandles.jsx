@@ -25,7 +25,11 @@ export default function ResizingHandles({ currentParameters }) {
     const cellHeight = gridParameters.height / gridParameters.horizontalLines;
     return height < cellHeight ? cellHeight : height;
   };
-
+  const withMaxWidth = width => {
+    return width + currentParameters.left >= 100
+      ? 100 - currentParameters.left
+      : width;
+  };
   const resizing = (e, side) => {
     e.persist();
     const { margin, gridWidth } = getMarginWidth(gridParameters.width);
@@ -33,15 +37,17 @@ export default function ResizingHandles({ currentParameters }) {
       case "right":
         setNewElementData({
           ...currentParameters,
-          width: withMinWidth(
-            Math.round(
-              ((e.clientX -
-                margin -
-                (currentParameters.left / 100) * gridWidth) /
-                gridWidth) *
-                100 *
-                10
-            ) / 10
+          width: withMaxWidth(
+            withMinWidth(
+              Math.round(
+                ((e.clientX -
+                  margin -
+                  (currentParameters.left / 100) * gridWidth) /
+                  gridWidth) *
+                  100 *
+                  10
+              ) / 10
+            )
           )
         });
         break;
@@ -56,15 +62,17 @@ export default function ResizingHandles({ currentParameters }) {
       case "bottom-right":
         setNewElementData({
           ...currentParameters,
-          width: withMinWidth(
-            Math.round(
-              ((e.clientX -
-                margin -
-                (currentParameters.left / 100) * gridWidth) /
-                gridWidth) *
-                100 *
-                10
-            ) / 10
+          width: withMaxWidth(
+            withMinWidth(
+              Math.round(
+                ((e.clientX -
+                  margin -
+                  (currentParameters.left / 100) * gridWidth) /
+                  gridWidth) *
+                  100 *
+                  10
+              ) / 10
+            )
           ),
           height: withMinHeight(
             applyTopMargin(e.clientY - currentParameters.top)
