@@ -7,16 +7,15 @@
   cursor: ew-resize;
   &.grid-handle-left {
     left: -2px;
-    &.resizing {
-      width: 100vw;
-      left: -50vw;
-    }
   }
   &.grid-handle-right {
     right: -2px;
-    &.resizing {
-      width: 100vw;
-      right: -50vw;
-    }
   }
+}
+.resizing {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
 }
