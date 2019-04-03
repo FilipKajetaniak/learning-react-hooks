@@ -8,16 +8,6 @@ import { gridContext } from "../../context/gridContext";
 export default function ResizingHandles({ currentParameters }) {
   const { setNewElementData } = useContext(newElementContext);
   const { gridParameters } = useContext(gridContext);
-  const sides = [
-    "top",
-    "bottom",
-    "left",
-    "right",
-    "top-right",
-    "top-left",
-    "bottom-right",
-    "bottom-left"
-  ];
   const gridElement = document.querySelector(".wrapper");
   const applyTopMargin = top => top - gridElement.offsetTop;
   const withMinWidth = width => {
@@ -63,26 +53,6 @@ export default function ResizingHandles({ currentParameters }) {
           )
         });
         break;
-      case "left":
-        setNewElementData({
-          ...currentParameters,
-          left: Math.round(((e.clientX - margin) / gridWidth) * 100 * 10) / 10,
-          width: withMinWidth(
-            currentParameters.width +
-              (currentParameters.left -
-                Math.round(((e.clientX - margin) / gridWidth) * 100 * 10) / 10)
-          )
-        });
-        break;
-      case "top":
-        setNewElementData({
-          ...currentParameters,
-          top: applyTopMargin(e.clientY),
-          height: withMinHeight(
-            currentParameters.height + (currentParameters.top - e.clientY)
-          )
-        });
-        break;
       case "bottom-right":
         setNewElementData({
           ...currentParameters,
@@ -101,58 +71,6 @@ export default function ResizingHandles({ currentParameters }) {
           )
         });
         break;
-      case "top-right":
-        setNewElementData({
-          ...currentParameters,
-          top: applyTopMargin(e.clientY),
-          height: withMinHeight(
-            applyTopMargin(
-              currentParameters.height + (currentParameters.top - e.clientY)
-            )
-          ),
-          width: withMinWidth(
-            Math.round(
-              ((e.clientX -
-                margin -
-                (currentParameters.left / 100) * gridWidth) /
-                gridWidth) *
-                100 *
-                10
-            ) / 10
-          )
-        });
-        break;
-      case "bottom-left":
-        setNewElementData({
-          ...currentParameters,
-          height: withMinHeight(
-            applyTopMargin(e.clientY - currentParameters.top)
-          ),
-          left: Math.round(((e.clientX - margin) / gridWidth) * 100 * 10) / 10,
-          width: withMinWidth(
-            currentParameters.width +
-              (currentParameters.left -
-                Math.round(((e.clientX - margin) / gridWidth) * 100 * 10) / 10)
-          )
-        });
-        break;
-      case "top-left":
-        setNewElementData({
-          ...currentParameters,
-          left: Math.round(((e.clientX - margin) / gridWidth) * 100 * 10) / 10,
-          width: withMinWidth(
-            currentParameters.width +
-              (currentParameters.left -
-                Math.round(((e.clientX - margin) / gridWidth) * 100 * 10) / 10)
-          ),
-          top: e.clientY,
-          height: withMinHeight(
-            applyTopMargin(
-              currentParameters.height + (currentParameters.top - e.clientY)
-            )
-          )
-        });
-        break;
       default:
         return;
     }
@@ -160,15 +78,24 @@ export default function ResizingHandles({ currentParameters }) {
 
   return (
     <>
-      {sides.map(singleSide => (
-        <SingleResizeHandle
-          side={singleSide}
-          key={singleSide}
-          onResizing={(e, side) => {
-            resizing(e, side);
-          }}
-        />
-      ))}
+      <SingleResizeHandle
+        side="right"
+        onResizing={(e, side) => {
+          resizing(e, side);
+        }}
+      />
+      <SingleResizeHandle
+        side="bottom"
+        onResizing={(e, side) => {
+          resizing(e, side);
+        }}
+      />
+      <SingleResizeHandle
+        side="bottom-right"
+        onResizing={(e, side) => {
+          resizing(e, side);
+        }}
+      />
     </>
   );
 }
