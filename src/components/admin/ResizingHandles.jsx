@@ -9,7 +9,7 @@ export default function ResizingHandles({ currentParameters }) {
   const { setNewElementData } = useContext(newElementContext);
   const { gridParameters } = useContext(gridContext);
   const gridElement = document.querySelector(".wrapper");
-  const applyTopMargin = top => top - gridElement.offsetTop;
+  const applyTopMargin = top => top - gridElement.offsetTop + window.scrollY;
   const withMinWidth = width => {
     const cellWidth =
       Math.round(
