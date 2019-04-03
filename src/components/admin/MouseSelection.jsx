@@ -15,7 +15,7 @@ export default function MouseSelection() {
     y: null
   });
   const { setNewElementData } = useContext(newElementContext);
-  const { gridParameters } = useContext(gridContext);
+  const { gridParameters, setGridParameters } = useContext(gridContext);
   const resizing = e => {
     if (!isResizing || !gridParameters.canSelect) {
       return;
@@ -23,7 +23,7 @@ export default function MouseSelection() {
 
     setEndingMousePosition({
       x: e.clientX,
-      y: e.clientY
+      y: e.clientY + gridParameters.scrollPosition
     });
   };
   const startResizing = e => {
@@ -34,7 +34,7 @@ export default function MouseSelection() {
     setResizing(true);
     setStartingMousePosition({
       x: e.clientX,
-      y: e.clientY
+      y: e.clientY + gridParameters.scrollPosition
     });
   };
   const stopResizing = e => {
@@ -52,15 +52,23 @@ export default function MouseSelection() {
     setEndingMousePosition({ x: null, y: null });
     setStartingMousePosition({ x: null, y: null });
   };
+  const updateScroll = e => {
+    setGridParameters({
+      ...gridParameters,
+      scrollPosition: window.scrollY
+    });
+  };
   useEffect(() => {
     const grid = document.querySelector(".grid");
     grid.addEventListener("mousemove", resizing);
     grid.addEventListener("mousedown", startResizing);
     grid.addEventListener("mouseup", stopResizing);
+    window.addEventListener("scroll", updateScroll);
     return () => {
       grid.removeEventListener("mousemove", resizing);
       grid.removeEventListener("mousedown", startResizing);
       grid.removeEventListener("mouseup", stopResizing);
+      window.removeEventListener("scroll", updateScroll);
     };
   });
   return (

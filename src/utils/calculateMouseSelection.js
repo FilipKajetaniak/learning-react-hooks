@@ -18,7 +18,7 @@ export default function calculateStyles(start, end, width) {
     };
   }
   const gridElement = document.querySelector(".wrapper");
-  const applyTopMargin = top => top - gridElement.offsetTop + window.scrollY;
+  const applyTopMargin = top => top - gridElement.offsetTop;
   const { margin, gridWidth } = getMarginWidth(width);
   const differenceX = end.x - start.x;
   const differenceY = end.y - start.y;

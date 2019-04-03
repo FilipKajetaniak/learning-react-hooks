@@ -10,6 +10,7 @@ export default function AdminContainer({ children }) {
     visible: true,
     canSelect: true,
     stickingToGrid: true,
+    scrollPosition: 0,
     message: ""
   });
   return (

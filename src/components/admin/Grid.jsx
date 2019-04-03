@@ -21,7 +21,13 @@ export default function Grid() {
   return (
     <newElementContext.Provider value={{ newElementData, setNewElementData }}>
       <SettingsBar />
-      <main className="wrapper" style={{ maxWidth: gridParameters.width }}>
+      <main
+        className="wrapper"
+        style={{
+          maxWidth: gridParameters.width,
+          height: gridParameters.height
+        }}
+      >
         <div className="grid">
           <HelperLines />
           <MouseSelection />

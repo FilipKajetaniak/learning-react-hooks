@@ -9,7 +9,7 @@ export default function ResizingHandles({ currentParameters }) {
   const { setNewElementData } = useContext(newElementContext);
   const { gridParameters } = useContext(gridContext);
   const gridElement = document.querySelector(".wrapper");
-  const applyTopMargin = top => top - gridElement.offsetTop + window.scrollY;
+  const applyTopMargin = top => top - gridElement.offsetTop;
   const withMinWidth = width => {
     const cellWidth =
       Math.round(
@@ -54,9 +54,9 @@ export default function ResizingHandles({ currentParameters }) {
       case "bottom":
         setNewElementData({
           ...currentParameters,
-          height: withMinHeight(
-            applyTopMargin(e.clientY - currentParameters.top)
-          )
+          height:
+            withMinHeight(applyTopMargin(e.clientY - currentParameters.top)) +
+            gridParameters.scrollPosition
         });
         break;
       case "bottom-right":
@@ -74,9 +74,9 @@ export default function ResizingHandles({ currentParameters }) {
               ) / 10
             )
           ),
-          height: withMinHeight(
-            applyTopMargin(e.clientY - currentParameters.top)
-          )
+          height:
+            withMinHeight(applyTopMargin(e.clientY - currentParameters.top)) +
+            gridParameters.scrollPosition
         });
         break;
       default:
