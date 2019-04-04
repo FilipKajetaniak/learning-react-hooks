@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import "../../css/SettingsBar.scss";
 import DensitySlider from "./DensitySlider";
 import { gridContext } from "../../context/gridContext";
+import Switch from "./Switch";
 export default function SettingsBar() {
   const { gridParameters, setGridParameters } = useContext(gridContext);
   const updateLines = value => {
@@ -13,10 +14,11 @@ export default function SettingsBar() {
   };
   return (
     <div className="settings-bar">
-      <DensitySlider
+      {/* <DensitySlider
         initialValue={gridParameters.verticalLines}
         onUpdated={updateLines}
-      />
+      /> */}
+      <Switch />
     </div>
   );
 }

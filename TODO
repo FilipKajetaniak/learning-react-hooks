@@ -8,8 +8,4 @@ Move logic for calculating mouse position relative to grid to a reusable functio
 
 Split hooks to custom hooks
 
-Enable scrolling on grid and switch from absolute to fixed position in mouse selection
-
 Refactor calculating size code
-
-Handle issues with moving out of grid
