@@ -14,11 +14,11 @@ export default function SettingsBar() {
   };
   return (
     <div className="settings-bar">
-      {/* <DensitySlider
-        initialValue={gridParameters.verticalLines}
+      <DensitySlider
         onUpdated={updateLines}
-      /> */}
-      <Switch />
+        value={gridParameters.verticalLines}
+      />
+      {/* <Switch /> */}
     </div>
   );
 }
