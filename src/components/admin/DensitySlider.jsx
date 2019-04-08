@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../../css/DensitySlider.scss";
 
 export default function DensitySlider({ onUpdated, value }) {
   const [visiblePointer, setVisiblePointer] = useState(false);

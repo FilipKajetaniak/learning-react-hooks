@@ -1,5 +1,21 @@
 .new-element-controls {
   position: absolute;
-  right: -70px;
+  right: -40px;
   top: 0;
+}
+
+.save-icon {
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+  display: block;
+  margin-bottom: 8px;
+  background-image: url("/icons/blue/edit.svg");
+}
+.edit-icon {
+  height: 23px;
+  width: 23px;
+  display: block;
+  cursor: pointer;
+  background-image: url("/icons/blue/close.svg");
 }

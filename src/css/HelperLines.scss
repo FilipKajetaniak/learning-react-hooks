@@ -2,20 +2,20 @@
 
 .horizontal {
   width: 100%;
-  border-bottom: 1px solid $lgray;
-  border-left: 1px solid $lgray;
+  border-bottom: 1px solid $lmain;
+  border-left: 1px solid $lmain;
   box-sizing: border-box;
   position: absolute;
   z-index: -1;
   &:first-of-type {
-    border-top: 1px solid $lgray;
+    border-top: 1px solid $lmain;
   }
   &:last-of-type {
     border-bottom: none;
   }
 }
 .vertical {
-  border-right: 1px solid $lgray;
+  border-right: 1px solid $lmain;
   height: 100%;
   position: absolute;
   z-index: -1;
@@ -25,5 +25,5 @@
 }
 
 .center {
-  border-right: 1px solid #ffdeee;
+  border-right: 1px solid $main;
 }

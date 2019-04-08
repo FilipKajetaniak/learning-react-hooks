@@ -5,7 +5,7 @@ import { newElementContext } from "../../context/newElementContext";
 
 export default function NewElementControls() {
   const { gridParameters, setGridParameters } = useContext(gridContext);
-  const { newElementData, setNewElementData } = useContext(newElementContext);
+  const { setNewElementData } = useContext(newElementContext);
   useEffect(() => {
     setGridParameters({
       ...gridParameters,
@@ -40,8 +40,8 @@ export default function NewElementControls() {
   };
   return (
     <div className="new-element-controls">
-      <button onClick={accept}>Accept</button> <br />
-      <button onClick={cancel}>Cancel</button>
+      <div onClick={accept} className="save-icon" />
+      <div onClick={cancel} className="edit-icon" />
     </div>
   );
 }

@@ -1,8 +1,10 @@
+@import "./var";
+
 .new-element {
   background-color: white;
   position: absolute;
-  -webkit-box-shadow: 3px 3px 12px -3px #ffc8e8;
-  -moz-box-shadow: 3px 3px 12px -3px #ffc8e8;
-  box-shadow: 3px 3px 12px -3px #ffc8e8;
-  border: 1px solid #ffc8e8;
+  -webkit-box-shadow: 3px 3px 12px -3px $lmain;
+  -moz-box-shadow: 3px 3px 12px -3px $lmain;
+  box-shadow: 3px 3px 12px -3px $lmain;
+  border: 1px solid $main;
 }
