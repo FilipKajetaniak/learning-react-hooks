@@ -8,6 +8,7 @@ import { gridContext } from "../../context/gridContext";
 import GridResizeHandles from "./GridResizeHandles";
 import InfoModal from "./InfoModal";
 import SettingsBar from "./SettingsBar";
+import BottomBar from "./BottomBar";
 
 export default function Grid() {
   const { gridParameters } = useContext(gridContext);
@@ -21,17 +22,17 @@ export default function Grid() {
   return (
     <newElementContext.Provider value={{ newElementData, setNewElementData }}>
       <SettingsBar />
-      <main className="wrapper" style={{ maxWidth: gridParameters.width }}>
-        <div className="grid">
-          <HelperLines />
-          <MouseSelection />
-          <NewElement data={newElementData} />
-        </div>
-        <GridResizeHandles />
-        {gridParameters.message && (
-          <InfoModal message={gridParameters.message} />
-        )}
-      </main>
+      <div className="scroll-container">
+        <main className="wrapper" style={{ maxWidth: gridParameters.width }}>
+          <div className="grid">
+            <HelperLines />
+            <MouseSelection />
+            <NewElement data={newElementData} />
+          </div>
+          <GridResizeHandles />
+        </main>
+      </div>
+      <BottomBar message={gridParameters.message} />
     </newElementContext.Provider>
   );
 }

@@ -25,5 +25,5 @@
 }
 
 .center {
-  border-right: 1px solid $main;
+  border-right: 1px solid lighten($main, 12%);
 }
