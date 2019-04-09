@@ -1,6 +1,4 @@
-Add resizing, moving and rotating icons to newElement
-
-Add rotating logic to elements
+Add resizing and moving icons to newElement
 
 Include scroll top offset
 
@@ -9,3 +7,5 @@ Move logic for calculating mouse position relative to grid to a reusable functio
 Split hooks to custom hooks
 
 Refactor calculating size code
+
+Include max width for grid resizing

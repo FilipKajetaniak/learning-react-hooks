@@ -13,11 +13,16 @@ export default function GridResizeHandles() {
       return;
     }
     const margin = side === "right" ? windowWidth - e.clientX : e.clientX;
-    const gridWidth = windowWidth - margin * 2;
+    let gridWidth = windowWidth - margin * 2;
+    if (gridWidth < 50) {
+      gridWidth = 50;
+    } else if (gridWidth > windowWidth - 40) {
+      gridWidth = windowWidth - 40;
+    }
     setGridParameters({
       ...gridParameters,
-      message: `${gridWidth < 50 ? 50 : gridWidth}px`,
-      width: gridWidth < 50 ? 50 : gridWidth
+      message: `${gridWidth}px`,
+      width: gridWidth
     });
   };
   const startResizing = (e, side) => {
