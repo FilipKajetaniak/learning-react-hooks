@@ -25,7 +25,12 @@ export default function Grid() {
       <div className="scroll-container">
         <main className="wrapper" style={{ maxWidth: gridParameters.width }}>
           <div className="grid">
-            <HelperLines />
+            {gridParameters.visible && (
+              <HelperLines
+                numberOfVerticalLines={gridParameters.verticalLines}
+                numberOfHorizontalLines={gridParameters.horizontalLines}
+              />
+            )}
             <MouseSelection />
             <NewElement data={newElementData} />
           </div>
