@@ -4,8 +4,8 @@ import "../../css/SettingLabel.scss";
 export default function SettingLabel({ children, label }) {
   return (
     <div className="setting-label">
-      {label}
-      {children}
+      <div className="label-text">{label}</div>
+      <div className="label-option">{children}</div>
     </div>
   );
 }

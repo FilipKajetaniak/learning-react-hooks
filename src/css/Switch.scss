@@ -3,14 +3,14 @@
 .switch {
   height: 22px;
   width: 40px;
-  border: 2px solid #ff9fc0;
+  border: 2px solid $main;
   border-radius: 1000px;
   cursor: pointer;
   .switch-knob {
     height: 18px;
     width: 18px;
     border-radius: 100%;
-    background-color: #b6f3f3;
+    background-color: $secondary;
     transition: all 70ms ease-in-out;
   }
   &.switched-on {

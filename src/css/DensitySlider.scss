@@ -1,18 +1,21 @@
+@import "./var";
+
 .slider-container {
   position: relative;
   width: 130px;
-  height: 22px;
+  height: 24px;
 }
 
 .slider {
   position: absolute;
-  top: 7px;
+  top: 8px;
   left: -2px;
   -webkit-appearance: none;
   width: 130px;
   height: 3px;
   border-radius: 1000px;
-  background: #ff9fc0;
+  background-color: $main;
+  border-radius: 40px;
   outline: none;
   -webkit-transition: 0.2s;
   transition: opacity 0.2s;
@@ -24,7 +27,7 @@
   width: 18px;
   height: 18px;
   border-radius: 100%;
-  background: #b6f3f3;
+  background: $secondary;
   cursor: pointer;
 }
 
@@ -32,21 +35,20 @@
   width: 18px;
   height: 18px;
   border-radius: 100%;
-  background: #b6f3f3;
+  background: $secondary;
   cursor: pointer;
 }
 
 .slider-label {
-  position: absolute;
+  position: relative;
   width: 24px;
   height: 24px;
   bottom: 30px;
   text-align: center;
   font-size: 0.9em;
-  line-height: 24px;
-  margin-left: -6px;
-  //   color: rgb(180, 180, 180);
-  color: #ff9fc0;
+  line-height: 22px;
+  margin-left: -9px;
+  color: $main;
   background-color: white;
   border-radius: 4px;
   z-index: 999;
@@ -61,6 +63,6 @@
   z-index: 998;
   transform: rotate(45deg);
   background-color: white;
-  border-right: 1px solid #ff9fc0;
-  border-bottom: 1px solid #ff9fc0;
+  border-right: 1px solid $main;
+  border-bottom: 1px solid $main;
 }

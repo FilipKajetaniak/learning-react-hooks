@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../../css/DensitySlider.scss";
 
 export default function DensitySlider({ onUpdated, value }) {
   const [visiblePointer, setVisiblePointer] = useState(false);
@@ -21,7 +22,7 @@ export default function DensitySlider({ onUpdated, value }) {
         }}
       />
       {visiblePointer && (
-        <div className="slider-label" style={{ left: `${(value / 54) * 90}%` }}>
+        <div className="slider-label" style={{ left: `${value * 2.19}px` }}>
           {value}
           <div className="label-pointer" />
         </div>
