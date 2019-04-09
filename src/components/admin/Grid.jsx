@@ -6,7 +6,6 @@ import "../../css/Grid.scss";
 import { newElementContext } from "../../context/newElementContext";
 import { gridContext } from "../../context/gridContext";
 import GridResizeHandles from "./GridResizeHandles";
-import InfoModal from "./InfoModal";
 import SettingsBar from "./SettingsBar";
 import BottomBar from "./BottomBar";
 
